@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Register | AI Deepfake Detection</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+<h2>
+
+<i class="fa-solid fa-shield-halved"></i>
+
+AI Deepfake Detection
+
+</h2>
+
+<ul>
+
+<li><a href="/">Home</a></li>
+
+<li><a href="/login">Login</a></li>
+
+</ul>
+
+</nav>
+
+<!-- ================= REGISTER FORM ================= -->
+
+<div class="form-box fade">
+
+<div class="center">
+
+<div class="icon-circle">
+
+<i class="fa-solid fa-user-plus"></i>
+
+</div>
+
+<h2>Create Account</h2>
+
+<p>
+
+Register to access AI-powered Fake News and Deepfake Image Detection.
+
+</p>
+
+</div>
+
+<!-- Flash Messages -->
+
+{% with messages = get_flashed_messages() %}
+
+{% if messages %}
+
+<div class="error">
+
+{{ messages[0] }}
+
+</div>
+
+{% endif %}
+
+{% endwith %}
+
+<form method="POST">
+
+<input
+type="text"
+name="username"
+placeholder="Enter Username"
+required>
+
+<input
+type="email"
+name="email"
+placeholder="Enter Email Address"
+required>
+
+<input
+type="password"
+name="password"
+placeholder="Create Password"
+required>
+
+<button type="submit">
+
+<i class="fa-solid fa-user-check"></i>
+
+Create Account
+
+</button>
+
+</form>
+
+<div class="center mt-30">
+
+<p>
+
+Already have an account?
+
+<a href="/login">
+
+Login Here
+
+</a>
+
+</p>
+
+</div>
+
+</div>
+
+<!-- ================= FEATURES ================= -->
+
+<section>
+
+<h2 class="section-title">
+
+Why Register?
+
+</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<div class="icon-circle">
+
+<i class="fa-solid fa-newspaper"></i>
+
+</div>
+
+<h2>News Detection</h2>
+
+<p>
+
+Detect fake and misleading news articles using Machine Learning algorithms.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon-circle">
+
+<i class="fa-solid fa-image"></i>
+
+</div>
+
+<h2>Image Detection</h2>
+
+<p>
+
+Upload images and identify AI-generated or manipulated content.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon-circle">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+</div>
+
+<h2>History</h2>
+
+<p>
+
+Save and review all your previous predictions in your personal dashboard.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<h3>
+
+AI Deepfake Detection System
+
+</h3>
+
+<p>
+
+Powered by Flask, TensorFlow, Machine Learning & Deep Learning
+
+</p>
+
+<p>
+
+© 2026 All Rights Reserved
+
+</p>
+
+</footer>
+
+</body>
+
+</html>

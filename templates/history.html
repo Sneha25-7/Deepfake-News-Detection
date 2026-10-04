@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>History | AI Deepfake Detection</title>
+
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+<style>
+
+
+.history-container{
+
+    max-width:1100px;
+    margin:50px auto;
+    padding:30px;
+
+}
+
+
+
+.title-box{
+
+    text-align:center;
+    margin-bottom:40px;
+
+}
+
+
+
+.title-box h1{
+
+    font-size:42px;
+
+}
+
+
+
+
+.history-card{
+
+    background:#111827;
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+
+}
+
+
+
+.left{
+
+    display:flex;
+    align-items:center;
+    gap:20px;
+
+}
+
+
+
+.icon{
+
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    background:#1e293b;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+    color:#38bdf8;
+
+}
+
+
+
+
+.details h2{
+
+    margin:0;
+
+}
+
+
+
+.details p{
+
+    color:#cbd5e1;
+
+}
+
+
+
+
+
+.badge{
+
+    padding:10px 18px;
+    border-radius:20px;
+    font-weight:bold;
+
+}
+
+
+
+.real{
+
+    background:#14532d;
+    color:#22c55e;
+
+}
+
+
+
+.fake{
+
+    background:#450a0a;
+    color:#ef4444;
+
+}
+
+
+
+
+
+.confidence{
+
+    font-size:20px;
+    color:#38bdf8;
+
+}
+
+
+
+
+.empty{
+
+    text-align:center;
+    background:#111827;
+    padding:50px;
+    border-radius:20px;
+
+}
+
+
+
+.empty i{
+
+    font-size:60px;
+    color:#64748b;
+
+}
+
+
+
+
+
+.buttons{
+
+    text-align:center;
+    margin-top:40px;
+
+}
+
+
+
+button{
+
+    padding:14px 25px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+    margin:10px;
+
+}
+
+
+
+.delete{
+
+    background:#dc2626;
+
+}
+
+
+
+footer{
+
+    text-align:center;
+    padding:30px;
+    background:#020617;
+    margin-top:50px;
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+
+<!-- NAVBAR -->
+
+
+<nav>
+
+
+<h2>
+
+<i class="fa-solid fa-shield-halved"></i>
+
+AI Deepfake Detection
+
+</h2>
+
+
+
+<ul>
+
+
+<li>
+<a href="/dashboard">
+Dashboard
+</a>
+</li>
+
+
+<li>
+<a href="/detect-text">
+News Detection
+</a>
+</li>
+
+
+<li>
+<a href="/detect-image">
+Image Detection
+</a>
+</li>
+
+
+<li>
+<a href="/history">
+History
+</a>
+</li>
+
+
+<li>
+<a href="/logout">
+Logout
+</a>
+</li>
+
+
+
+</ul>
+
+
+</nav>
+
+
+
+
+
+
+
+<section class="history-container">
+
+
+
+<div class="title-box">
+
+
+<h1>
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+Detection History
+
+</h1>
+
+
+<p>
+
+Previous AI detection results
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+{% if history %}
+
+
+
+{% for item in history %}
+
+
+
+<div class="history-card">
+
+
+
+<div class="left">
+
+
+<div class="icon">
+
+
+{% if item.type == "image" %}
+
+<i class="fa-solid fa-image"></i>
+
+
+{% else %}
+
+<i class="fa-solid fa-newspaper"></i>
+
+
+{% endif %}
+
+
+</div>
+
+
+
+
+
+<div class="details">
+
+
+<h2>
+
+{{ item.type|capitalize }} Detection
+
+</h2>
+
+
+<p>
+
+{{ item.date }}
+
+</p>
+
+
+
+<p>
+
+Confidence:
+<strong>
+
+{{ item.confidence }}%
+
+</strong>
+
+</p>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+{% if item.result == "REAL" or item.result=="REAL NEWS" or item.result=="REAL IMAGE" %}
+
+
+
+<div class="badge real">
+
+<i class="fa-solid fa-circle-check"></i>
+
+REAL
+
+</div>
+
+
+
+{% else %}
+
+
+
+<div class="badge fake">
+
+<i class="fa-solid fa-triangle-exclamation"></i>
+
+FAKE
+
+</div>
+
+
+
+{% endif %}
+
+
+
+
+</div>
+
+
+
+
+{% endfor %}
+
+
+
+
+{% else %}
+
+
+
+<div class="empty">
+
+
+<i class="fa-solid fa-folder-open"></i>
+
+
+<h2>
+
+No Detection History
+
+</h2>
+
+
+<p>
+
+Your previous AI analysis results will appear here.
+
+</p>
+
+
+</div>
+
+
+
+{% endif %}
+
+
+
+
+
+
+
+<div class="buttons">
+
+
+<a href="/dashboard">
+
+<button>
+
+<i class="fa-solid fa-house"></i>
+
+Dashboard
+
+</button>
+
+</a>
+
+
+
+<a href="/clear-history">
+
+<button class="delete">
+
+<i class="fa-solid fa-trash"></i>
+
+Clear History
+
+</button>
+
+</a>
+
+
+
+</div>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+<footer>
+
+
+<h3>
+
+AI Deepfake Detection System
+
+</h3>
+
+
+<p>
+
+Machine Learning Based Fake News & Deepfake Detection
+
+</p>
+
+
+<p>
+
+© 2026 All Rights Reserved
+
+</p>
+
+
+</footer>
+
+
+
+
+</body>
+
+</html>

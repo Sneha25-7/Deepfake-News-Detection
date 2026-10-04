@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login | AI Deepfake Detection</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<nav>
+
+<h2>
+
+<i class="fa-solid fa-shield-halved"></i>
+
+AI Deepfake Detection
+
+</h2>
+
+<ul>
+
+<li><a href="/">Home</a></li>
+
+<li><a href="/register">Register</a></li>
+
+</ul>
+
+</nav>
+
+<div class="form-box fade">
+
+<div class="center">
+
+<div class="icon-circle">
+
+<i class="fa-solid fa-user-lock"></i>
+
+</div>
+
+<h2>Welcome Back</h2>
+
+<p>
+
+Login to continue using the AI Detection System.
+
+</p>
+
+</div>
+
+<!-- Flash Messages -->
+
+{% with messages = get_flashed_messages() %}
+
+{% if messages %}
+
+<div class="error">
+
+{{ messages[0] }}
+
+</div>
+
+{% endif %}
+
+{% endwith %}
+
+<form method="POST">
+
+<input
+type="email"
+name="email"
+placeholder="Enter Email Address"
+required>
+
+<input
+type="password"
+name="password"
+placeholder="Enter Password"
+required>
+
+<button type="submit">
+
+<i class="fa-solid fa-right-to-bracket"></i>
+
+Login
+
+</button>
+
+</form>
+
+<div class="center mt-30">
+
+<p>
+
+Don't have an account?
+
+<a href="/register">
+
+Register Here
+
+</a>
+
+</p>
+
+</div>
+
+</div>
+
+<footer>
+
+<p>
+
+AI Deepfake Detection System © 2026
+
+</p>
+
+</footer>
+
+</body>
+
+</html>

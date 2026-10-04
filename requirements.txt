@@ -1,0 +1,12 @@
+Flask
+Flask-SQLAlchemy
+Flask-Login
+Werkzeug
+pandas
+numpy
+scikit-learn
+joblib
+tensorflow
+opencv-python
+Pillow
+numpy

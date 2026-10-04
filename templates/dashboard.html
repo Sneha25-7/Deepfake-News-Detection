@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard | AI Deepfake Detection</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<nav>
+
+<h2>
+<i class="fa-solid fa-shield-halved"></i>
+AI Deepfake Detection
+</h2>
+
+<ul>
+
+<li><a href="/dashboard">Dashboard</a></li>
+
+<li><a href="/detect-text">News Detection</a></li>
+
+<li><a href="/detect-image">Image Detection</a></li>
+
+<li><a href="/history">History</a></li>
+
+<li><a href="/logout">Logout</a></li>
+
+</ul>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>
+
+Welcome,
+
+<span>{{ name }}</span>
+
+</h1>
+
+<p>
+
+Detect fake news and AI-generated images using Machine Learning.
+Upload articles or images and receive prediction results instantly.
+
+</p>
+
+<a href="/detect-text" class="btn">
+
+Start Detecting
+
+</a>
+
+</div>
+
+<div class="hero-image">
+
+<img src="{{ url_for('static', filename='images/hero.png') }}" alt="Artificial Intelligence">
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="section-title">
+
+AI Detection Services
+
+</h2>
+
+<p class="section-subtitle">
+
+Choose one of the AI tools below to analyze news articles or images.
+
+</p>
+
+<div class="cards">
+
+<div class="card">
+
+<div class="icon-circle">
+
+<i class="fa-solid fa-newspaper"></i>
+
+</div>
+
+<h2>Fake News Detection</h2>
+
+<p>
+
+Analyze any news article using the trained NLP model and identify whether the article is Real or Fake.
+
+</p>
+
+<a href="/detect-text">
+
+<button>
+
+Analyze News
+
+</button>
+
+</a>
+
+</div>
+
+<div class="card">
+
+<div class="icon-circle">
+
+<i class="fa-solid fa-image"></i>
+
+</div>
+
+<h2>Deepfake Image Detection</h2>
+
+<p>
+
+Upload an image and let the CNN model detect whether it is a Real Image or AI Generated.
+
+</p>
+
+<a href="/detect-image">
+
+<button>
+
+Detect Image
+
+</button>
+
+</a>
+
+</div>
+
+<div class="card">
+
+<div class="icon-circle">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+</div>
+
+<h2>Prediction History</h2>
+
+<p>
+
+View all previously analyzed news articles and uploaded images along with prediction confidence.
+
+</p>
+
+<a href="/history">
+
+<button>
+
+View History
+
+</button>
+
+</a>
+
+</div>
+
+<div class="card">
+
+<div class="icon-circle">
+
+<i class="fa-solid fa-chart-line"></i>
+
+</div>
+
+<h2>System Accuracy</h2>
+
+<p>
+
+Machine Learning based prediction system providing fast analysis with confidence percentage.
+
+</p>
+
+<button>
+
+98% Accuracy
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="section-title">
+
+System Features
+
+</h2>
+
+<div class="stats">
+
+<div class="stat-box">
+
+<h2>AI</h2>
+
+<p>Machine Learning Powered</p>
+
+</div>
+
+<div class="stat-box">
+
+<h2>24/7</h2>
+
+<p>Instant Detection</p>
+
+</div>
+
+<div class="stat-box">
+
+<h2>100%</h2>
+
+<p>Secure Upload</p>
+
+</div>
+
+<div class="stat-box">
+
+<h2>Fast</h2>
+
+<p>Real-Time Prediction</p>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<h3>AI Deepfake Detection System</h3>
+
+<p>
+
+Built using Flask • Python • Machine Learning • TensorFlow
+
+</p>
+
+<p>
+
+© 2026 All Rights Reserved
+
+</p>
+
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fake News Detection | AI Deepfake Detection</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+<h2>
+
+<i class="fa-solid fa-shield-halved"></i>
+
+AI Deepfake Detection
+
+</h2>
+
+<ul>
+
+<li><a href="/dashboard">Dashboard</a></li>
+<li><a href="/detect-image">Image Detection</a></li>
+<li><a href="/history">History</a></li>
+<li><a href="/logout">Logout</a></li>
+
+</ul>
+
+</nav>
+
+<!-- ================= HERO ================= -->
+
+<section class="detect-container">
+
+<div class="detect-card fade">
+
+<div class="center">
+
+<div class="icon-circle">
+
+<i class="fa-solid fa-newspaper"></i>
+
+</div>
+
+<h2>AI Fake News Detection</h2>
+
+<p>
+
+Paste a complete news article below. Our Machine Learning model will analyze the content and determine whether it is likely to be Real or Fake.
+
+</p>
+
+</div>
+
+<form action="/predict-text" method="POST">
+
+<label><strong>News Article</strong></label>
+
+<textarea
+name="news"
+placeholder="Paste the complete news article here..."
+required></textarea>
+
+<button type="submit">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+Analyze Article
+
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+<!-- ================= FEATURES ================= -->
+
+<section>
+
+<h2 class="section-title">
+
+Detection Process
+
+</h2>
+
+<div class="stats">
+
+<div class="stat-box">
+
+<h2>01</h2>
+
+<p>
+
+Paste the news article.
+
+</p>
+
+</div>
+
+<div class="stat-box">
+
+<h2>02</h2>
+
+<p>
+
+AI extracts important features.
+
+</p>
+
+</div>
+
+<div class="stat-box">
+
+<h2>03</h2>
+
+<p>
+
+Machine Learning predicts authenticity.
+
+</p>
+
+</div>
+
+<div class="stat-box">
+
+<h2>04</h2>
+
+<p>
+
+View prediction with confidence score.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= TIPS ================= -->
+
+<section>
+
+<h2 class="section-title">
+
+Tips for Better Results
+
+</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<div class="icon-circle">
+
+<i class="fa-solid fa-file-lines"></i>
+
+</div>
+
+<h2>Complete Article</h2>
+
+<p>
+
+Paste the complete news content instead of only the headline.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon-circle">
+
+<i class="fa-solid fa-language"></i>
+
+</div>
+
+<h2>Clear Text</h2>
+
+<p>
+
+Remove emojis or unnecessary symbols for more accurate predictions.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon-circle">
+
+<i class="fa-solid fa-brain"></i>
+
+</div>
+
+<h2>AI Analysis</h2>
+
+<p>
+
+The prediction is generated using a trained Natural Language Processing model.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<h3>
+
+AI Deepfake Detection System
+
+</h3>
+
+<p>
+
+Fake News Detection using Machine Learning & NLP
+
+</p>
+
+<p>
+
+© 2026 All Rights Reserved
+
+</p>
+
+</footer>
+
+</body>
+
+</html>

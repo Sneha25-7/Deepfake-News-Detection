@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Prediction Result | AI Deepfake Detection</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+
+.result{
+    text-align:center;
+    padding:60px 20px;
+}
+
+
+.result h1{
+    font-size:42px;
+    margin-top:20px;
+}
+
+
+.icon-circle{
+
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:#1e293b;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+    font-size:40px;
+    color:#38bdf8;
+
+}
+
+
+.status-real{
+
+    color:#22c55e;
+
+}
+
+
+.status-fake{
+
+    color:#ef4444;
+
+}
+
+
+
+.progress-container{
+
+    width:80%;
+    height:25px;
+    background:#334155;
+    border-radius:20px;
+    margin:20px auto;
+    overflow:hidden;
+
+}
+
+
+.progress-bar{
+
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        #38bdf8,
+        #2563eb
+    );
+
+    border-radius:20px;
+
+}
+
+
+
+.news-box{
+
+    margin:40px auto;
+    max-width:850px;
+    background:#111827;
+    padding:30px;
+    border-radius:20px;
+    text-align:left;
+
+}
+
+
+.news-box h3{
+
+    color:#38bdf8;
+
+}
+
+
+.news-box p{
+
+    color:#d1d5db;
+    line-height:1.8;
+
+}
+
+
+
+.buttons{
+
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+
+}
+
+
+.buttons button{
+
+    padding:14px 25px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+
+}
+
+
+.buttons button:hover{
+
+    transform:scale(1.05);
+
+}
+
+
+
+.cards{
+
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+    padding:40px;
+
+}
+
+
+
+.card{
+
+    background:#111827;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+
+}
+
+
+
+.card i{
+
+    font-size:35px;
+    color:#38bdf8;
+
+}
+
+
+
+footer{
+
+    text-align:center;
+    padding:30px;
+    background:#020617;
+    margin-top:50px;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav>
+
+
+<h2>
+<i class="fa-solid fa-shield-halved"></i>
+AI Deepfake Detection
+</h2>
+
+
+<ul>
+
+<li>
+<a href="/dashboard">
+Dashboard
+</a>
+</li>
+
+
+<li>
+<a href="/detect-text">
+News Detection
+</a>
+</li>
+
+
+<li>
+<a href="/detect-image">
+Image Detection
+</a>
+</li>
+
+
+<li>
+<a href="/history">
+History
+</a>
+</li>
+
+
+<li>
+<a href="/logout">
+Logout
+</a>
+</li>
+
+
+</ul>
+
+
+</nav>
+
+
+
+
+<!-- RESULT SECTION -->
+
+
+<section class="result">
+
+
+<div class="icon-circle">
+
+<i class="fa-solid fa-robot"></i>
+
+</div>
+
+
+
+<h1>
+Analysis Complete
+</h1>
+
+
+
+
+{% if result == "REAL NEWS" or result == "REAL" %}
+
+
+<h2 class="status-real">
+
+<i class="fa-solid fa-circle-check"></i>
+
+{{result}}
+
+</h2>
+
+
+{% else %}
+
+
+<h2 class="status-fake">
+
+<i class="fa-solid fa-triangle-exclamation"></i>
+
+{{result}}
+
+</h2>
+
+
+{% endif %}
+
+
+
+
+
+<h3 style="margin-top:35px;">
+
+AI Confidence Score
+
+</h3>
+
+
+
+<div class="progress-container">
+
+
+<div class="progress-bar"
+    style="width:{{ confidence }}%;">
+</div>
+
+
+</div>
+
+
+
+<h2>
+
+{{confidence}}%
+
+</h2>
+
+
+
+
+<!-- IMAGE RESULT IF AVAILABLE -->
+
+
+{% if image %}
+
+
+<div class="news-box">
+
+
+<h3>
+
+<i class="fa-solid fa-image"></i>
+
+Uploaded Image
+
+</h3>
+
+
+<img src="{{image}}"
+style="
+width:300px;
+border-radius:15px;
+margin-top:15px;
+">
+
+
+</div>
+
+
+{% endif %}
+
+
+<!-- NEWS RESULT -->
+
+
+{% if news %}
+
+
+<div class="news-box">
+
+
+<h3>
+
+<i class="fa-solid fa-newspaper"></i>
+
+Submitted News
+
+</h3>
+
+<p>
+
+{{news}}
+
+</p>
+
+
+</div>
+
+
+{% endif %}
+
+
+<div class="buttons">
+
+
+<a href="/detect-text">
+
+<button>
+
+<i class="fa-solid fa-repeat"></i>
+
+Analyze Another
+
+</button>
+
+</a>
+
+
+
+<a href="/dashboard">
+
+<button>
+
+<i class="fa-solid fa-house"></i>
+
+Dashboard
+
+</button>
+
+</a>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+<!-- AI PROCESS SECTION -->
+
+
+<section>
+
+
+<h2 class="section-title">
+
+How AI Generated This Result
+
+</h2>
+
+
+
+
+<div class="cards">
+
+
+
+<div class="card">
+
+
+<i class="fa-solid fa-file-lines"></i>
+
+
+<h2>
+Text Processing
+</h2>
+
+
+<p>
+
+The article is cleaned, processed and converted into numerical features using Natural Language Processing techniques.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+
+<i class="fa-solid fa-brain"></i>
+
+
+<h2>
+Machine Learning Model
+</h2>
+
+
+<p>
+
+The trained AI model compares the input data with previously learned fake and real patterns.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+
+<i class="fa-solid fa-chart-line"></i>
+
+
+<h2>
+Prediction Confidence
+</h2>
+
+
+<p>
+
+The confidence score represents how certain the AI system is about the final prediction.
+
+</p>
+
+
+</div>
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<footer>
+
+
+<h3>
+
+AI Deepfake Detection System
+
+</h3>
+
+
+<p>
+
+Machine Learning Based Fake News & Deepfake Detection
+
+</p>
+
+
+<p>
+
+© 2026 All Rights Reserved
+
+</p>
+
+
+</footer>
+
+
+
+</body>
+
+
+</html>

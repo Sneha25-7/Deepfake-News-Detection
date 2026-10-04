@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Image Result | AI Deepfake Detection</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+<style>
+
+
+.result-container{
+
+    max-width:1000px;
+    margin:50px auto;
+    padding:40px;
+    text-align:center;
+
+}
+
+
+
+.ai-icon{
+
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:#1e293b;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+    font-size:40px;
+    color:#38bdf8;
+
+}
+
+
+
+.result-container h1{
+
+    margin-top:25px;
+    font-size:42px;
+
+}
+
+
+
+.badge{
+
+    display:inline-block;
+    padding:12px 25px;
+    border-radius:30px;
+    font-size:22px;
+    margin-top:20px;
+    font-weight:bold;
+
+}
+
+
+
+.real{
+
+    background:#14532d;
+    color:#22c55e;
+
+}
+
+
+
+.fake{
+
+    background:#450a0a;
+    color:#ef4444;
+
+}
+
+
+
+
+.image-box{
+
+    margin:40px auto;
+    background:#111827;
+    padding:30px;
+    border-radius:20px;
+    width:fit-content;
+
+}
+
+
+
+.image-box img{
+
+    width:350px;
+    max-width:90%;
+    border-radius:20px;
+
+}
+
+
+
+
+
+.progress-container{
+
+    width:80%;
+    height:25px;
+    margin:20px auto;
+    background:#334155;
+    border-radius:20px;
+    overflow:hidden;
+
+}
+
+
+
+.progress-bar{
+
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        #38bdf8,
+        #2563eb
+    );
+
+    border-radius:20px;
+
+}
+
+
+
+
+.buttons{
+
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:40px;
+
+}
+
+
+
+.buttons button{
+
+    padding:15px 25px;
+    border:none;
+    border-radius:12px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+
+}
+
+
+
+.buttons button:hover{
+
+    transform:scale(1.05);
+
+}
+
+
+
+
+.cards{
+
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+    padding:40px;
+
+}
+
+
+
+.card{
+
+    background:#111827;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+
+}
+
+
+
+.card i{
+
+    font-size:35px;
+    color:#38bdf8;
+
+}
+
+
+
+
+footer{
+
+    text-align:center;
+    padding:30px;
+    background:#020617;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+
+<!-- NAVBAR -->
+
+<nav>
+
+
+<h2>
+
+<i class="fa-solid fa-shield-halved"></i>
+
+AI Deepfake Detection
+
+</h2>
+
+
+
+<ul>
+
+<li>
+<a href="/dashboard">
+Dashboard
+</a>
+</li>
+
+
+<li>
+<a href="/detect-text">
+News Detection
+</a>
+</li>
+
+
+<li>
+<a href="/detect-image">
+Image Detection
+</a>
+</li>
+
+
+<li>
+<a href="/history">
+History
+</a>
+</li>
+
+
+<li>
+<a href="/logout">
+Logout
+</a>
+</li>
+
+
+</ul>
+
+
+</nav>
+
+
+
+
+
+<section class="result-container">
+
+
+
+<div class="ai-icon">
+
+<i class="fa-solid fa-image"></i>
+
+</div>
+
+
+
+
+<h1>
+
+Image Analysis Complete
+
+</h1>
+
+
+
+
+{% if result == "REAL IMAGE" or result == "REAL" %}
+
+
+<div class="badge real">
+
+<i class="fa-solid fa-circle-check"></i>
+
+REAL IMAGE
+
+</div>
+
+
+
+{% else %}
+
+
+
+<div class="badge fake">
+
+<i class="fa-solid fa-triangle-exclamation"></i>
+
+DEEPFAKE IMAGE
+
+</div>
+
+
+
+{% endif %}
+
+
+
+
+
+
+
+<!-- IMAGE DISPLAY -->
+
+
+<div class="image-box">
+
+
+<h2>
+
+<i class="fa-solid fa-photo-film"></i>
+
+Uploaded Image
+
+</h2>
+
+
+
+<img src="{{ image }}">
+
+
+
+</div>
+
+
+
+
+
+
+
+<h2>
+
+AI Confidence Score
+
+</h2>
+
+
+
+<div class="progress-container">
+
+
+<div class="progress-bar"
+style="width: {{ confidence }}%;">
+
+</div>
+
+
+</div>
+
+
+
+
+<h1>
+
+{{ confidence }}%
+
+</h1>
+
+
+
+
+
+
+
+
+<div class="buttons">
+
+
+<a href="/detect-image">
+
+<button>
+
+<i class="fa-solid fa-repeat"></i>
+
+Analyze Another Image
+
+</button>
+
+</a>
+
+
+
+
+<a href="/dashboard">
+
+<button>
+
+<i class="fa-solid fa-house"></i>
+
+Dashboard
+
+</button>
+
+</a>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+<!-- AI PROCESS -->
+
+
+<section>
+
+
+<h2 class="section-title">
+
+How AI Detected This Image
+
+</h2>
+
+
+
+<div class="cards">
+
+
+<div class="card">
+
+<i class="fa-solid fa-camera"></i>
+
+
+<h2>
+Image Processing
+</h2>
+
+
+<p>
+
+The uploaded image is analyzed using computer vision techniques to extract important visual patterns.
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="card">
+
+
+<i class="fa-solid fa-brain"></i>
+
+
+<h2>
+Deep Learning Model
+</h2>
+
+
+<p>
+
+The AI model checks facial details, textures and artificial generation patterns.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+
+<i class="fa-solid fa-chart-simple"></i>
+
+
+<h2>
+Confidence Analysis
+</h2>
+
+
+<p>
+
+The confidence score shows how accurately the model predicts real or deepfake content.
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<footer>
+
+
+<h3>
+
+AI Deepfake Detection System
+
+</h3>
+
+
+<p>
+
+Computer Vision Based Deepfake Image Detection
+
+</p>
+
+
+<p>
+
+© 2026 All Rights Reserved
+
+</p>
+
+
+</footer>
+
+
+
+
+</body>
+
+</html>

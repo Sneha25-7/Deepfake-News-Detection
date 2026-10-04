@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Deepfake Image Detection | AI Deepfake Detection</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+<h2>
+
+<i class="fa-solid fa-shield-halved"></i>
+
+AI Deepfake Detection
+
+</h2>
+
+<ul>
+
+<li><a href="/dashboard">Dashboard</a></li>
+
+<li><a href="/detect-text">News Detection</a></li>
+
+<li><a href="/history">History</a></li>
+
+<li><a href="/logout">Logout</a></li>
+
+</ul>
+
+</nav>
+
+<!-- ================= IMAGE DETECTION ================= -->
+
+<section class="detect-container">
+
+<div class="detect-card fade">
+
+<div class="center">
+
+<div class="icon-circle">
+
+<i class="fa-solid fa-image"></i>
+
+</div>
+
+<h2>Deepfake Image Detection</h2>
+
+<p>
+
+Upload an image to check whether it is a real photograph or an AI-generated deepfake image.
+
+</p>
+
+</div>
+
+<form action="/predict-image"
+method="POST"
+enctype="multipart/form-data">
+
+<label>
+
+<strong>Select Image</strong>
+
+</label>
+
+<input
+type="file"
+name="image"
+id="imageInput"
+accept="image/*"
+required>
+
+<div class="preview">
+
+<img
+id="previewImage"
+src="https://placehold.co/700x400/111827/94A3B8?text=Image+Preview"
+alt="Preview">
+
+</div>
+
+<button type="submit">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+Analyze Image
+
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+<!-- ================= HOW AI WORKS ================= -->
+
+<section>
+
+<h2 class="section-title">
+
+Detection Process
+
+</h2>
+
+<div class="stats">
+
+<div class="stat-box">
+
+<h2>01</h2>
+
+<p>
+
+Upload an image.
+
+</p>
+
+</div>
+
+<div class="stat-box">
+
+<h2>02</h2>
+
+<p>
+
+AI preprocesses the image.
+
+</p>
+
+</div>
+
+<div class="stat-box">
+
+<h2>03</h2>
+
+<p>
+
+CNN model extracts features.
+
+</p>
+
+</div>
+
+<div class="stat-box">
+
+<h2>04</h2>
+
+<p>
+
+Prediction with confidence score.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= FEATURES ================= -->
+
+<section>
+
+<h2 class="section-title">
+
+What Can Be Detected?
+
+</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<div class="icon-circle">
+
+<i class="fa-solid fa-face-smile"></i>
+
+</div>
+
+<h2>Face Swapping</h2>
+
+<p>
+
+Detect manipulated faces generated using Deepfake technology.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon-circle">
+
+<i class="fa-solid fa-camera"></i>
+
+</div>
+
+<h2>AI Generated Images</h2>
+
+<p>
+
+Identify synthetic images created using Generative AI models.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon-circle">
+
+<i class="fa-solid fa-shield"></i>
+
+</div>
+
+<h2>Authenticity Check</h2>
+
+<p>
+
+Verify whether an uploaded image is likely to be genuine.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<h3>
+
+AI Deepfake Detection System
+
+</h3>
+
+<p>
+
+Deep Learning based Deepfake Image Detection
+
+</p>
+
+<p>
+
+© 2026 All Rights Reserved
+
+</p>
+
+</footer>
+
+<!-- ================= IMAGE PREVIEW SCRIPT ================= -->
+
+<script>
+
+const imageInput = document.getElementById("imageInput");
+
+const previewImage = document.getElementById("previewImage");
+
+imageInput.addEventListener("change", function(){
+
+const file = this.files[0];
+
+if(file){
+
+previewImage.src = URL.createObjectURL(file);
+
+}
+
+});
+
+</script>
+
+</body>
+
+</html>
